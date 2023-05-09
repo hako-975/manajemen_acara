@@ -38,7 +38,7 @@
 				</div>
 			<?php endforeach ?>
 		<?php else: ?>
-			<div class="title">
+			<div class="belum-ada-acara">
 				<h2>Belum Ada Acara</h2>
 				<a href="tambah_acara.php" class="button">Tambah Acara</a>
 			</div>

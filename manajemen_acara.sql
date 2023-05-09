@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Bulan Mei 2023 pada 19.01
+-- Waktu pembuatan: 09 Bulan Mei 2023 pada 13.27
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.2.0
 
@@ -35,6 +35,18 @@ CREATE TABLE `acara` (
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `acara`
+--
+
+INSERT INTO `acara` (`id_acara`, `nama_acara`, `tanggal_acara`, `tempat_acara`, `id_user`) VALUES
+(1, 'Ulang Tahun Bani', '2023-10-20 18:00:00', 'McD Pamulang&lt;br /&gt;\r\n&lt;br /&gt;\r\ndeket lotte mart', 1),
+(2, 'Bakar-bakar sama temen smp', '2023-05-15 18:00:00', 'Rumah dhiwa', 2),
+(3, 'Reunian SD', '2023-05-20 15:00:00', 'Roti Bakar 88 Jakarta Selatan', 2),
+(4, 'Jogging di GBK', '2023-05-13 19:00:00', 'Senayan, Gelora Bung Karno', 2),
+(5, 'Event Pameran Mobil Antik', '2023-05-27 13:00:00', 'ICE BSD Hall 10', 2),
+(6, 'Pernikahan temen SD Rahmat', '2023-05-21 20:00:00', 'Rumah Rahmat &lt;br /&gt;\r\nJl. pahlawan no. 11 rt 01 / rw 01', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -53,7 +65,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `nama_lengkap`) VALUES
-(1, 'andri123', '$2y$10$fL/nZFZ3P/ZYLwlQuDweVuRRuA.c0F.ioTT0ajkpSjScW99cv.lhK', 'Andri Firman Saputra');
+(1, 'andri123', '$2y$10$fL/nZFZ3P/ZYLwlQuDweVuRRuA.c0F.ioTT0ajkpSjScW99cv.lhK', 'Andri Firman Saputra'),
+(2, 'bani123', '$2y$10$gj8AyAFGWU7WXbmX9VpDc.mYW3VPkyj0AfVoI93QJD7R6Bqg8QRji', 'Bani Maskur Muhammad Al-Walad');
 
 --
 -- Indexes for dumped tables
@@ -80,13 +93,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `acara`
 --
 ALTER TABLE `acara`
-  MODIFY `id_acara` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_acara` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
