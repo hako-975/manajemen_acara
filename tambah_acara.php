@@ -43,7 +43,7 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Tambah Acara</h1>
+		<h1 class="heading-title">Tambah Acara</h1>
 		<form method="post" class="form form-left">
 		  	<label class="label" for="nama_acara">Nama Acara</label>
 		  	<input class="input" type="text" id="nama_acara" name="nama_acara" placeholder="Enter Nama Acara" required>

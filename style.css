@@ -10,7 +10,7 @@ body {
 
 .container {
   padding: 20px 50px;
-  padding-bottom: 100px;
+  padding-bottom: 200px;
 }
 
 .navbar {
@@ -41,7 +41,24 @@ body {
   align-items: center;
 }
 
+.heading-title {
+  text-align: left;
+}
+
+
+@media (max-width: 768px) {
+  .heading-title {
+    text-align: center;
+
+  }
+
+  .navbar-title {
+    font-size: 5px;
+  }
+}
+
 @media (max-width: 992px) {
+
   .navbar-title {
     font-size: 20px;
   }
@@ -71,6 +88,8 @@ body {
 }
 
 .button {
+  margin-top: 5px;
+  margin-bottom: 5px;
   display: inline-block;
   padding: 10px 15px;
   background-color: #071a52;
@@ -140,6 +159,7 @@ body {
   background-color: #faee1c;
   padding: 10px 30px;
   border-radius: 20px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -165,6 +185,21 @@ body {
 }
 
 @media (max-width: 768px) {
+  .daftar-acara {
+    float: none;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .tambah-acara {
+    float: none;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 20px;
+  }
+
   .card-button {
     position: absolute;
     top: auto;
@@ -184,4 +219,39 @@ body {
 .table-profile {
   clear: both;
   text-align: left;
+}
+
+.hr {
+  border: none;
+  border-bottom: 1px solid #071a52;
+}
+
+.clear {
+  clear: both;
+}
+
+.form-cari {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.form-cari input {
+  border: none;
+  border-radius: 15px 0 0 0;
+  height: 40px;
+  margin: 0;
+  padding: 10px;
+}
+
+.form-cari button {
+  background-color: #071a52;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 0 0 15px 0;
+  height: 40px;
+  margin: 0;
+  padding: 10px 20px;
 }

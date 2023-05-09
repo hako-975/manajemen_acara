@@ -66,16 +66,16 @@
             <img src="img/logo.png" alt="Logo">
             <h2 class="title">Form Registrasi</h2>
             <label class="label" for="username">Username</label>
-            <input class="input" type="text" id="username" name="username" placeholder="Enter username">
+            <input class="input" type="text" id="username" name="username" placeholder="Enter username" required>
 
             <label class="label" for="password">Password</label>
-            <input class="input" type="password" id="password" name="password" placeholder="Enter Password">
+            <input class="input" type="password" id="password" name="password" placeholder="Enter Password" required>
 
             <label class="label" for="re_password">Re-Password</label>
-            <input class="input" type="password" id="re_password" name="re_password" placeholder="Enter Re-Password">
+            <input class="input" type="password" id="re_password" name="re_password" placeholder="Enter Re-Password" required>
 
             <label class="label" for="nama_lengkap">Nama Lengkap</label>
-            <input class="input" type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Enter Nama Lengkap">
+            <input class="input" type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Enter Nama Lengkap" required>
 
             <button type="submit" class="button align-right" name="btnRegistrasi">Registrasi</button>
         </form>

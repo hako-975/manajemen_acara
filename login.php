@@ -53,10 +53,10 @@
 			<img src="img/logo.png" alt="Logo">
 		  	<h2 class="title">Form Login</h2>
 		  	<label class="label" for="username">Username</label>
-		  	<input class="input" type="text" id="username" name="username" placeholder="Enter username">
+		  	<input class="input" type="text" id="username" name="username" placeholder="Enter username" required>
 
 		  	<label class="label" for="password">Password</label>
-		  	<input class="input" type="password" id="password" name="password" placeholder="Enter password">
+		  	<input class="input" type="password" id="password" name="password" placeholder="Enter password" required>
 
 		  	<button type="submit" class="button align-right" name="btnLogin">Login</button>
 		</form>
