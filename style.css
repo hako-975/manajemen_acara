@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  padding: 20px;
+  padding: 20px 50px;
   padding-bottom: 100px;
 }
 
@@ -30,11 +30,6 @@ body {
   padding: 10px 50px;
 }
 
-@media (max-width: 992px) {
-  .footer-container {
-    padding: 10px;
-  }
-}
 
 .navbar-title {
   font-size: 24px;
@@ -44,6 +39,16 @@ body {
   color: #fff;
   display: flex;
   align-items: center;
+}
+
+@media (max-width: 992px) {
+  .navbar-title {
+    font-size: 20px;
+  }
+
+  .footer-container {
+    padding: 10px;
+  }
 }
 
 .navbar-title img {
@@ -66,6 +71,7 @@ body {
 }
 
 .button {
+  display: inline-block;
   padding: 10px 15px;
   background-color: #071a52;
   color: #fff;
@@ -83,38 +89,40 @@ body {
   text-decoration: none;
 }
 
-.login-form {
+.form {
   max-width: 400px;
   margin: 0 auto;
   background-color: #482FF7;
   padding: 30px;
-  padding-top: 5px;
   color: #fff;
   border-radius: 15px 0 15px 0;
 }
 
-.login-form img {
+.form-left {
+  margin: 0;
+}
+
+.form img {
   display: block;
   margin: auto;
   width: 150px;
 }
 
-.login-title {
+.title {
   text-align: center;
 }
 
-.login-label,
-.login-input,
-.login-button {
+.label,
+.input {
   display: block;
   width: 100%;
 }
 
-.login-label {
+.label {
   margin-bottom: 10px;
 }
 
-.login-input {
+.input {
   margin-bottom: 20px;
   padding: 10px;
   border: none;
@@ -125,3 +133,45 @@ body {
   display: block;
   margin-left: auto;
 }
+
+.card {
+  clear: both;
+  position: relative;
+  background-color: #faee1c;
+  padding: 10px 30px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.card h4 {
+  margin-bottom: -10px;
+}
+
+.card-button {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  left: auto;
+  bottom: auto;
+}
+
+.daftar-acara {
+  float: left;
+}
+
+.tambah-acara {
+  float: right;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .card-button {
+    position: absolute;
+    top: auto;
+    left: auto;
+    bottom: 30px;
+    right: 20px;
+
+  } 
+}
+

@@ -58,24 +58,24 @@
 <html>
 <head>
     <?php include_once 'head.php'; ?>
-    <title>Registrasi - Acara</title>
+    <title>Registrasi - Manajemen Acara</title>
 </head>
 <body>
     <div class="container">
-        <form method="post" class="login-form">
+        <form method="post" class="form">
             <img src="img/logo.png" alt="Logo">
-            <h2 class="login-title">Form Registrasi</h2>
-            <label class="login-label" for="username">Username</label>
-            <input class="login-input" type="text" id="username" name="username" placeholder="Enter username">
+            <h2 class="title">Form Registrasi</h2>
+            <label class="label" for="username">Username</label>
+            <input class="input" type="text" id="username" name="username" placeholder="Enter username">
 
-            <label class="login-label" for="password">Password</label>
-            <input class="login-input" type="password" id="password" name="password" placeholder="Enter Password">
+            <label class="label" for="password">Password</label>
+            <input class="input" type="password" id="password" name="password" placeholder="Enter Password">
 
-            <label class="login-label" for="re_password">Re-Password</label>
-            <input class="login-input" type="password" id="re_password" name="re_password" placeholder="Enter Re-Password">
+            <label class="label" for="re_password">Re-Password</label>
+            <input class="input" type="password" id="re_password" name="re_password" placeholder="Enter Re-Password">
 
-            <label class="login-label" for="nama_lengkap">Nama Lengkap</label>
-            <input class="login-input" type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Enter Nama Lengkap">
+            <label class="label" for="nama_lengkap">Nama Lengkap</label>
+            <input class="input" type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Enter Nama Lengkap">
 
             <button type="submit" class="button align-right" name="btnRegistrasi">Registrasi</button>
         </form>

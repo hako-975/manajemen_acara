@@ -45,18 +45,18 @@
 <html>
 <head>
 	<?php include_once 'head.php'; ?>
-	<title>Login - Acara</title>
+	<title>Login - Manajemen Acara</title>
 </head>
 <body>
 	<div class="container">
-		<form method="post" class="login-form">
+		<form method="post" class="form">
 			<img src="img/logo.png" alt="Logo">
-		  	<h2 class="login-title">Form Login</h2>
-		  	<label class="login-label" for="username">Username</label>
-		  	<input class="login-input" type="text" id="username" name="username" placeholder="Enter username">
+		  	<h2 class="title">Form Login</h2>
+		  	<label class="label" for="username">Username</label>
+		  	<input class="input" type="text" id="username" name="username" placeholder="Enter username">
 
-		  	<label class="login-label" for="password">Password</label>
-		  	<input class="login-input" type="password" id="password" name="password" placeholder="Enter password">
+		  	<label class="label" for="password">Password</label>
+		  	<input class="input" type="password" id="password" name="password" placeholder="Enter password">
 
 		  	<button type="submit" class="button align-right" name="btnLogin">Login</button>
 		</form>
