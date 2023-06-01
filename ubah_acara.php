@@ -10,7 +10,7 @@
 	$data_user = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'"));
 
 	$id_acara = $_GET['id_acara'];
-	$acara = mysqli_query($koneksi, "SELECT * FROM acara INNER JOIN user ON acara.id_user = user.id_user WHERE acara.id_acara = '$id_acara' && acara.id_user = '$id_user'");
+	$acara = mysqli_query($koneksi, "SELECT * FROM acara INNER JOIN user ON acara.id_user = user.id_user INNER JOIN keuangan ON acara.id_acara = keuangan.id_acara WHERE acara.id_acara = '$id_acara' && acara.id_user = '$id_user'");
 	$data_acara = mysqli_fetch_assoc($acara);
 
 	$acaraKu = false;
@@ -40,26 +40,29 @@
 		$nama_acara = htmlspecialchars($_POST['nama_acara']);
 		$tanggal_acara = htmlspecialchars($_POST['tanggal_acara']);
 		$tempat_acara = htmlspecialchars(nl2br($_POST['tempat_acara']));
+		$jenis_keuangan = htmlspecialchars($_POST['jenis_keuangan']);
+		$jumlah = htmlspecialchars($_POST['jumlah']);
 
 		$ubah_acara = mysqli_query($koneksi, "UPDATE acara SET nama_acara = '$nama_acara', tanggal_acara = '$tanggal_acara', tempat_acara = '$tempat_acara' WHERE id_acara = '$id_acara' && id_user = '$id_user'");
 
 		if ($ubah_acara) {
-        echo "
-            <script>
-                alert('Acara berhasil diubah!')
-                window.location.href='index.php'
-            </script>
-        ";
-        exit;
-    } else {
-        echo "
-            <script>
-                alert('Acara gagal diubah!')
-                window.history.back()
-            </script>
-        ";
-        exit;
-    }
+			mysqli_query($koneksi, "UPDATE keuangan SET jenis_keuangan = '$jenis_keuangan', jumlah = '$jumlah' WHERE id_acara = '$id_acara'");
+	        echo "
+	            <script>
+	                alert('Acara berhasil diubah!')
+	                window.location.href='index.php'
+	            </script>
+	        ";
+	        exit;
+	    } else {
+	        echo "
+	            <script>
+	                alert('Acara gagal diubah!')
+	                window.history.back()
+	            </script>
+	        ";
+	        exit;
+	    }
 	}
 ?>
 
@@ -80,6 +83,16 @@
 
 		  	<label class="label" for="tempat_acara">Tempat Acara</label>
 		  	<textarea class="input" id="tempat_acara" name="tempat_acara" placeholder="Enter Tempat Acara" required><?= strip_tags(htmlspecialchars_decode($data_acara['tempat_acara'])); ?></textarea>
+
+		  	<label class="label" for="jenis_keuangan">Jenis Keuangan</label>
+		  	<select class="input" id="jenis_keuangan" name="jenis_keuangan" placeholder="Enter Jenis Keuangan" required>
+		  		<option value="<?= $data_acara['jenis_keuangan']; ?>"><?= $data_acara['jenis_keuangan']; ?></option>
+		  		<option value="PEMASUKAN">PEMASUKAN</option>
+		  		<option value="PENGELUARAN">PENGELUARAN</option>
+		  	</select>
+
+		  	<label class="label" for="jumlah">Jumlah</label>
+		  	<input class="input" type="number" id="jumlah" name="jumlah" placeholder="Enter Jumlah" min="0" required value="<?= $data_acara['jumlah']; ?>">
 
 		  	<button type="submit" class="button align-right" name="btnUbah">Ubah Acara</button>
 		</form>

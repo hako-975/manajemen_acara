@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Bulan Mei 2023 pada 13.27
+-- Waktu pembuatan: 01 Jun 2023 pada 19.17
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.2.0
 
@@ -45,7 +45,30 @@ INSERT INTO `acara` (`id_acara`, `nama_acara`, `tanggal_acara`, `tempat_acara`, 
 (3, 'Reunian SD', '2023-05-20 15:00:00', 'Roti Bakar 88 Jakarta Selatan', 2),
 (4, 'Jogging di GBK', '2023-05-13 19:00:00', 'Senayan, Gelora Bung Karno', 2),
 (5, 'Event Pameran Mobil Antik', '2023-05-27 13:00:00', 'ICE BSD Hall 10', 2),
-(6, 'Pernikahan temen SD Rahmat', '2023-05-21 20:00:00', 'Rumah Rahmat &lt;br /&gt;\r\nJl. pahlawan no. 11 rt 01 / rw 01', 2);
+(6, 'Pernikahan temen SD Rahmat', '2023-05-21 20:00:00', 'Rumah Rahmat &lt;br /&gt;\r\nJl. pahlawan no. 11 rt 01 / rw 01', 2),
+(8, 'Ulang Tahun Andri', '2023-06-02 22:20:00', 'Rumah Andri', 2),
+(9, 'Penggalangan dana untuk tsunami', '2023-06-02 00:05:00', 'Masjid', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `keuangan`
+--
+
+CREATE TABLE `keuangan` (
+  `id_keuangan` int(11) NOT NULL,
+  `jenis_keuangan` enum('PEMASUKAN','PENGELUARAN') NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `id_acara` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `keuangan`
+--
+
+INSERT INTO `keuangan` (`id_keuangan`, `jenis_keuangan`, `jumlah`, `id_acara`) VALUES
+(2, 'PENGELUARAN', 50000, 8),
+(3, 'PEMASUKAN', 100000, 9);
 
 -- --------------------------------------------------------
 
@@ -66,7 +89,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `nama_lengkap`) VALUES
 (1, 'andri123', '$2y$10$fL/nZFZ3P/ZYLwlQuDweVuRRuA.c0F.ioTT0ajkpSjScW99cv.lhK', 'Andri Firman Saputra'),
-(2, 'bani123', '$2y$10$gj8AyAFGWU7WXbmX9VpDc.mYW3VPkyj0AfVoI93QJD7R6Bqg8QRji', 'Bani Maskur Muhammad Al-Walad');
+(2, 'bani123', '$2y$10$8xVGh73TQx11MxzAA.JuauQ6Vyrz8p1VSZIASr5aidMLhyObDizOq', 'Bani Maskur Muhammad Al-Walad');
 
 --
 -- Indexes for dumped tables
@@ -78,6 +101,13 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `nama_lengkap`) VALUES
 ALTER TABLE `acara`
   ADD PRIMARY KEY (`id_acara`),
   ADD KEY `id_user` (`id_user`);
+
+--
+-- Indeks untuk tabel `keuangan`
+--
+ALTER TABLE `keuangan`
+  ADD PRIMARY KEY (`id_keuangan`),
+  ADD KEY `id_acara` (`id_acara`);
 
 --
 -- Indeks untuk tabel `user`
@@ -93,7 +123,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `acara`
 --
 ALTER TABLE `acara`
-  MODIFY `id_acara` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_acara` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `keuangan`
+--
+ALTER TABLE `keuangan`
+  MODIFY `id_keuangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
@@ -110,6 +146,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `acara`
   ADD CONSTRAINT `acara_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `keuangan`
+--
+ALTER TABLE `keuangan`
+  ADD CONSTRAINT `keuangan_ibfk_1` FOREIGN KEY (`id_acara`) REFERENCES `acara` (`id_acara`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

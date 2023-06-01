@@ -13,10 +13,14 @@
 		$nama_acara = htmlspecialchars($_POST['nama_acara']);
 		$tanggal_acara = htmlspecialchars($_POST['tanggal_acara']);
 		$tempat_acara = htmlspecialchars(nl2br($_POST['tempat_acara']));
+		$jenis_keuangan = htmlspecialchars($_POST['jenis_keuangan']);
+		$jumlah = htmlspecialchars($_POST['jumlah']);
 
 		$tambah_acara = mysqli_query($koneksi, "INSERT INTO acara VALUES ('', '$nama_acara', '$tanggal_acara', '$tempat_acara', '$id_user')");
 
 		if ($tambah_acara) {
+			$id_acara = mysqli_insert_id($koneksi);
+			$tambah_keuangan = mysqli_query($koneksi, "INSERT INTO keuangan VALUES ('', '$jenis_keuangan', '$jumlah', '$id_acara')");
 	        echo "
 	            <script>
 	                alert('Acara berhasil ditambahkan!')
@@ -53,6 +57,16 @@
 
 		  	<label class="label" for="tempat_acara">Tempat Acara</label>
 		  	<textarea class="input" id="tempat_acara" name="tempat_acara" placeholder="Enter Tempat Acara" required></textarea>
+
+		  	<label class="label" for="jenis_keuangan">Jenis Keuangan</label>
+		  	<select class="input" id="jenis_keuangan" name="jenis_keuangan" placeholder="Enter Jenis Keuangan" required>
+		  		<option value="PEMASUKAN">PEMASUKAN</option>
+		  		<option value="PENGELUARAN">PENGELUARAN</option>
+		  	</select>
+
+		  	<label class="label" for="jumlah">Jumlah</label>
+		  	<input class="input" type="number" id="jumlah" name="jumlah" placeholder="Enter Jumlah" min="0" required>
+
 
 		  	<button type="submit" class="button align-right" name="btnTambah">Tambah Acara</button>
 		</form>

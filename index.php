@@ -9,16 +9,25 @@
 	$id_user = $_SESSION['id_user'];
 	$data_user = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'"));
 
-	$acara = mysqli_query($koneksi, "SELECT * FROM acara WHERE id_user = '$id_user' ORDER BY tanggal_acara ASC");
+	$acara = mysqli_query($koneksi, "SELECT * FROM acara INNER JOIN keuangan ON keuangan.id_acara = acara.id_acara WHERE id_user = '$id_user' ORDER BY tanggal_acara DESC");
+
+	$total_keuangan = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT
+    SUM(CASE WHEN jenis_keuangan = 'PENGELUARAN' THEN -jumlah ELSE jumlah END) AS total_keuangan
+	FROM
+	    acara
+	INNER JOIN
+	    keuangan ON keuangan.id_acara = acara.id_acara
+	WHERE
+	    id_user = '$id_user'"))['total_keuangan'];
 
 	if (isset($_POST['btnCari'])) {
 		$cari = $_POST['cari'];
-		$acara = mysqli_query($koneksi, "SELECT * FROM acara INNER JOIN user ON acara.id_user = user.id_user WHERE acara.id_user = '$id_user' 
+		$acara = mysqli_query($koneksi, "SELECT * FROM acara INNER JOIN keuangan ON keuangan.id_acara = acara.id_acara INNER JOIN user ON acara.id_user = user.id_user WHERE acara.id_user = '$id_user' 
 	        AND user.id_user = '$id_user' 
 	        AND (nama_acara LIKE '%$cari%' 
 	        OR tanggal_acara LIKE '%$cari%'
 	        OR tempat_acara LIKE '%$cari%')
-			ORDER BY tanggal_acara ASC");
+			ORDER BY tanggal_acara DESC");
 	}
 
 ?>
@@ -42,15 +51,28 @@
 	        	<button type="button" onclick="return window.location.href='index.php'" class="button">Reset</button>
         	<?php endif ?>
         </div>
+        <div class="card">
+        	<h3>Total Keuangan: Rp. <?= str_replace(",", ".", number_format($total_keuangan)); ?></h3>
+        </div>
 		<?php if (mysqli_num_rows($acara)): ?>
 			<?php foreach ($acara as $data_acara): ?>
 				<div class="card">
 					<h3>Tanggal Acara:</h3>
-					<h3><?= date("d-m-Y \j\a\m H:i", strtotime($data_acara['tanggal_acara'])); ?></h3>
-					<h4>Nama Acara:</h4>
-					<p><?= $data_acara['nama_acara']; ?></p>
-					<h4>Tempat Acara:</h4>
-					<p><?= htmlspecialchars_decode(strip_tags($data_acara['tempat_acara'])); ?></p>
+					<h3 class="mb-0"><?= date("d-m-Y \j\a\m H:i", strtotime($data_acara['tanggal_acara'])); ?></h3>
+					<div class="row">
+						<div class="col">
+							<h4>Nama Acara:</h4>
+							<p><?= $data_acara['nama_acara']; ?></p>
+							<h4>Tempat Acara:</h4>
+							<p><?= htmlspecialchars_decode(strip_tags($data_acara['tempat_acara'])); ?></p>
+						</div>
+						<div class="col">
+							<h4>Jenis Keuangan:</h4>
+							<p><?= $data_acara['jenis_keuangan']; ?></p>
+							<h4>Jumlah:</h4>
+							<p>Rp. <?= str_replace(",", ".", number_format($data_acara['jumlah'])); ?></p>
+						</div>
+					</div>
 					<hr class="hr">
 					<a href="ubah_acara.php?id_acara=<?= $data_acara['id_acara']; ?>" class="button">Ubah</a>
 					<a href="hapus_acara.php?id_acara=<?= $data_acara['id_acara']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus Acara <?= $data_acara['nama_acara']; ?>?')" class="button">Hapus</a>
