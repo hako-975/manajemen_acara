@@ -17,22 +17,22 @@
 		$tambah_acara = mysqli_query($koneksi, "INSERT INTO acara VALUES ('', '$nama_acara', '$tanggal_acara', '$tempat_acara', '$id_user')");
 
 		if ($tambah_acara) {
-        echo "
-            <script>
-                alert('Acara berhasil ditambahkan!')
-                window.location.href='index.php'
-            </script>
-        ";
-        exit;
-    } else {
-        echo "
-            <script>
-                alert('Acara gagal ditambahkan!')
-                window.history.back()
-            </script>
-        ";
-        exit;
-    }
+	        echo "
+	            <script>
+	                alert('Acara berhasil ditambahkan!')
+	                window.location.href='index.php'
+	            </script>
+	        ";
+	        exit;
+	    } else {
+	        echo "
+	            <script>
+	                alert('Acara gagal ditambahkan!')
+	                window.history.back()
+	            </script>
+	        ";
+	        exit;
+	    }
 	}
 ?>
 
