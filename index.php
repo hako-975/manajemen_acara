@@ -9,8 +9,10 @@
 	$id_user = $_SESSION['id_user'];
 	$data_user = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'"));
 
+	// join
 	$acara = mysqli_query($koneksi, "SELECT * FROM acara INNER JOIN keuangan ON keuangan.id_acara = acara.id_acara WHERE id_user = '$id_user' ORDER BY tanggal_acara DESC");
 
+	// perhitungan
 	$total_keuangan = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT
     SUM(CASE WHEN jenis_keuangan = 'PENGELUARAN' THEN -jumlah ELSE jumlah END) AS total_keuangan
 	FROM
@@ -20,6 +22,7 @@
 	WHERE
 	    id_user = '$id_user'"))['total_keuangan'];
 
+	// searching
 	if (isset($_POST['btnCari'])) {
 		$cari = $_POST['cari'];
 		$acara = mysqli_query($koneksi, "SELECT * FROM acara INNER JOIN keuangan ON keuangan.id_acara = acara.id_acara INNER JOIN user ON acara.id_user = user.id_user WHERE acara.id_user = '$id_user' 
